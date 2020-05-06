@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/nav_account"
+            android:title="My Account" />
+        <menu>
+            <item
+            android:id="@+id/nav_profile"
+            android:title="        My Profile"/>
+
+        <item
+            android:id="@+id/nav_changepassword"
+            android:title="        Change Password"/>
+
+        <item
+            android:id="@+id/nav_address"
+            android:title="        Delivery Address"/>
+
+        <item
+            android:id="@+id/nav_logout"
+            android:title="        Logout"/>
+        </menu>
+
+
+        <item
+            android:id="@+id/nav_category"
+            android:title="Shop by Category" />
+
+        <item
+            android:id="@+id/nav_offers"
+            android:title="Offers" />
+
+        <item
+            android:id="@+id/nav_mycart"
+            android:title="My Cart" />
+
+        <item
+            android:id="@+id/nav_myorders"
+            android:title="Orders" />
+
+        <item
+            android:id="@+id/nav_notification"
+            android:title="Notification" />
+
+        <item
+            android:id="@+id/nav_customeserivie"
+            android:title="Customer Service" />
+
+        <item
+            android:id="@+id/nav_faqs"
+            android:title="FAQs" />
+
+    </group>
+</menu>

@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".HomeActivity">
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        app:cardCornerRadius="25dp">
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.gridlayout.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+            android:padding="25dp"
+                app:columnCount="2">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="160dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp"
+                    app:layout_gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/sbi_logo"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/sbi_logo" />
+
+                        <TextView
+                            android:id="@+id/credit_debit_sbi"
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:gravity="center"
+                            android:text="Credit and Debit Cards"
+                            android:textColor="#3F51B5"
+                            android:textSize="8sp" />
+
+                        <TextView
+                            android:id="@+id/id_title_sbi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="10%"
+                            android:textColor="#000"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/sbi_dis"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Instant Discount"
+                            android:textColor="#000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/shop_title_sbi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Shop for Rs 1000+"
+                            android:textColor="#000000"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/cd_sbi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#D61557"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="Code : SBIIN1564"
+                            android:textColor="#FFFFFF"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/sbi_cd_validity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Valid only on Wednesday           View T and C"
+                            android:textColor="#000000"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="160dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp"
+                    app:layout_gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/hdfc_logo"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/hdfc_bank_logo" />
+                        <TextView
+                            android:id="@+id/credit_debit_hdfc"
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:gravity="center"
+                            android:text="Credit and Debit Cards"
+                            android:textColor="#3F51B5"
+                            android:textSize="8sp" />
+
+                        <TextView
+                            android:id="@+id/id_dis_hdfc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="10%"
+                            android:textColor="#000"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/id_per_hdfc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Instant Discount"
+                            android:textColor="#000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/id_title_hdfc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Shop for Rs 1000+"
+                            android:textColor="#000000"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/id_code_hdfc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#D61557"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="Code : HDFCBK2568"
+                            android:textColor="#FFFFFF"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/id_val_hdfc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Valid only on Tuesday             View T and C"
+                            android:textColor="#000000"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="160dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp"
+                    app:layout_gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/icici_logo"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/icici_logo" />
+                        <TextView
+                            android:id="@+id/credit_debit_icici"
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:gravity="center"
+                            android:text="Credit and Debit Cards"
+                            android:textColor="#E8190A"
+                            android:textSize="8sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="10%"
+                            android:textColor="#000"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/icici_dis"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Instant Discount"
+                            android:textColor="#000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/shop_title_icici"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Shop for Rs 1000+"
+                            android:textColor="#000000"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/cd_icici"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#D61557"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="Code : ICCIIN5684"
+                            android:textColor="#FFFFFF"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/icici_cd_validity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Valid only on Friday           View T and C"
+                            android:textColor="#000000"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="160dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp"
+                    app:layout_gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/kotak_logo"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/kotak_logo" />
+                        <TextView
+                            android:id="@+id/credit_debit_kotak"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Credit and Debit Cards"
+                            android:textColor="#F31E0F"
+                            android:textSize="8sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="10%"
+                            android:textColor="#000"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/kotak_dis"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Instant Discount"
+                            android:textColor="#000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/shop_title_kotak"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Shop for Rs 1000+"
+                            android:textColor="#000000"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/cd_kotak"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#D61557"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="Code : KTKIN1256"
+                            android:textColor="#FFFFFF"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/kotak_cd_validity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Valid only on Saturday           View T and C"
+                            android:textColor="#000000"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="160dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp"
+                    app:layout_gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/union_logo"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/union_logo" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:gravity="center"
+                            android:text="Credit and Debit Cards"
+                            android:textColor="#717BAF"
+                            android:textSize="8sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="10%"
+                            android:textColor="#000"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/union_dis"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Instant Discount"
+                            android:textColor="#000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/shop_title_union"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Shop for Rs 1000+"
+                            android:textColor="#000000"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/cd_union"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#D61557"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="Code : UNBKN5689"
+                            android:textColor="#FFFFFF"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/union_cd_validity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Valid only on Wednesday           View T and C"
+                            android:textColor="#000000"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="160dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp"
+                    app:layout_gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/axis_logo"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/axis_logo" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:gravity="center"
+                            android:text="Credit and Debit Cards"
+                            android:textColor="#2F3232"
+                            android:textSize="8sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="10%"
+                            android:textColor="#000"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/axis_dis"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Instant Discount"
+                            android:textColor="#000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/shop_title_axis"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Shop for Rs 1000+"
+                            android:textColor="#000000"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/cd_axis"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#D61557"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="Code : AXINBK8568"
+                            android:textColor="#FFFFFF"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/axis_cd_validity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Valid only on Tuesday           View T and C"
+                            android:textColor="#000000"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </androidx.gridlayout.widget.GridLayout>
+
+
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@+id/appBarLayout"
+        app:layout_anchorGravity="center">
+
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:visibility="visible"
+            android:background="@drawable/blackborder"
+            >
+
+        </SearchView>
+
+    </androidx.appcompat.widget.Toolbar >
+</LinearLayout>
