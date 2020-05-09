@@ -77,6 +77,7 @@ public class HomeFragment extends Fragment {
                             for (int i = 0; i < arrayHeadlines.length(); i++) {
                                 JSONObject objItem = arrayHeadlines.getJSONObject(i);
                                 //String title = objItem.getString("title");
+                                String categoryid = objItem.getString("category_id");
                                 String imgUrl = objItem.getString("location");
                                 String description = objItem.getString("caption");
 
@@ -85,6 +86,7 @@ public class HomeFragment extends Fragment {
                                 // map.put("title", title);
                                 map.put("url", imgUrl);
                                 map.put("detail", description);
+                                map.put("categoryid", categoryid);
 
 
                                 arrayList.add(map);
@@ -107,12 +109,13 @@ public class HomeFragment extends Fragment {
         queue.add(stringRequest);
 
 
+
+
         return root;
     }
 
 
     private void callAPI() {//
-
 
 
         }
@@ -127,12 +130,14 @@ public class HomeFragment extends Fragment {
                 for (int i = 0; i < ja.length(); i++) {
                     JSONObject objItem = ja.getJSONObject(i);
                     //String title = objItem.getString("title");
+                    String categoryid = objItem.getString("category_id");
                     String location = objItem.getString("location");
                     String caption = objItem.getString("caption");
 
 
                     HashMap<String, String> map = new HashMap<>();
                     // map.put("title", title);
+                    map.put("categoryid",categoryid);
                     map.put("url", location);
                     map.put("detail", caption);
 
@@ -148,6 +153,7 @@ public class HomeFragment extends Fragment {
                 e.printStackTrace();
             }
         }
+
 
 
 }

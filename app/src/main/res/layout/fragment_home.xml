@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/home_category"
-            android:layout_marginBottom="40dp"/>
+            android:layout_marginBottom="40dp" />
     </androidx.gridlayout.widget.GridLayout>
 
     <androidx.appcompat.widget.Toolbar

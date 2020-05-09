@@ -6,12 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.prac.ui.home.HomeFragment;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,13 +41,26 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
         }
     }
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        HashMap<String,String> map = mArray.get(position);
-        //Glid.with(mContext).load(map.get("url")).into(holder.imgBanner);
-        Glide.with(mContext).load(map.get("url")).into(holder.imgBanner);
-        //holder.txtTitle.setText(map.get("title"));
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        final HashMap<String,String> map = mArray.get(position);
+
+
+      // Glide.with(mContext).load(map.get("url")).into(holder.imgBanner);
+        Picasso.get().load(map.get("url")).into(holder.imgBanner);
+
         holder.txtcaption.setText(map.get("detail"));
         HomeFragment.caption1=map.get("detail");
+
+        holder.imgBanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast = Toast.makeText(mContext,
+                        "Category Id :" + map.get("categoryid"),
+                        Toast.LENGTH_SHORT);
+
+                toast.show();
+            }
+        });
 
 
     }
