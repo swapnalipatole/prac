@@ -22,7 +22,7 @@
             <ImageView
                 android:id="@+id/imgBanner"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="150dp"
                 android:adjustViewBounds="true"
                 app:srcCompat="@android:drawable/ic_menu_report_image" />
 
@@ -35,7 +35,7 @@
                 android:text="This is the title"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
-                android:textSize="10sp" />
+                android:textSize="13sp" />
         </LinearLayout>
     </LinearLayout>
 

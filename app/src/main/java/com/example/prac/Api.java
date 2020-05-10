@@ -14,9 +14,6 @@ public interface Api {
         @GET("cats.php")
         Call<List<Details_Pojo>> getstatus();
 
-        @GET("product.php")
-        Call<List<Offers_Pojo>> getproducts(@Query("category_id") Integer category_id);
-
 
     }
 

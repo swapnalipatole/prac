@@ -1,18 +1,29 @@
-package com.example.prac;
+package com.example.prac.ui.home;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.service.autofill.OnClickAction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.example.prac.ui.home.HomeFragment;
+import com.example.prac.HomeActivity;
+import com.example.prac.R;
+
+import com.example.prac.ui.category.CategoryFragment;
+import com.example.prac.ui.category.CategoryViewModel;
+import com.example.prac.ui.offers.OffersFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -28,7 +39,8 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
         this.mArray = mArray;
     }
 
-    public  static class ViewHolder extends RecyclerView.ViewHolder{
+
+    public  static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView imgBanner;
         TextView  txtcaption;
         public ViewHolder(View v){
@@ -38,6 +50,12 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
             txtcaption = (TextView) v.findViewById(R.id.txtTitle);
 
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            v.setOnClickListener(this);
+            imgBanner = (ImageView) v;
         }
     }
     @Override
@@ -51,14 +69,13 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
         holder.txtcaption.setText(map.get("detail"));
         HomeFragment.caption1=map.get("detail");
 
+
         holder.imgBanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(mContext,
-                        "Category Id :" + map.get("categoryid"),
-                        Toast.LENGTH_SHORT);
 
-                toast.show();
+
+                HomeFragment.ClickedEvent(mContext,map.get("categoryid") , map.get("detail"));
             }
         });
 

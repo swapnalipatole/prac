@@ -23,8 +23,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.prac.Api;
-import com.example.prac.HomeCategoryAdapter;
+import com.example.prac.HomeActivity;
 import com.example.prac.OffersAdapter;
+import com.example.prac.Offers_Pojo;
 import com.example.prac.R;
 
 import org.json.JSONArray;
@@ -33,6 +34,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class OffersFragment extends Fragment {
 
@@ -113,6 +117,8 @@ public class OffersFragment extends Fragment {
             }
         });
         queue.add(stringRequest);
+
+
 
 
        return root;

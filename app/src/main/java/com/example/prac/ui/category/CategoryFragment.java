@@ -1,5 +1,6 @@
 package com.example.prac.ui.category;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,19 +18,19 @@ import com.example.prac.R;
 public class CategoryFragment extends Fragment {
 
     private CategoryViewModel categoryViewModel;
+    TextView textView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         categoryViewModel =
                 ViewModelProviders.of(this).get(CategoryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_category, container, false);
-        final TextView textView = root.findViewById(R.id.text_category);
-        categoryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        final View root = inflater.inflate(R.layout.fragment_category, container, false);
+
+        textView = root.findViewById(R.id.product_category);
+
+        //String name = getActivity().getIntent().getStringExtra("caption");
+        //textView.setText(name);
+
         return root;
     }
 }

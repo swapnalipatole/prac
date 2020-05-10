@@ -1,5 +1,8 @@
 package com.example.prac.ui.home;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,7 +11,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,8 +26,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.prac.Api;
-import com.example.prac.HomeCategoryAdapter;
 import com.example.prac.R;
+import com.example.prac.ui.category.CategoryFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,8 +36,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import retrofit2.Call;
 
-public class HomeFragment extends Fragment {
+
+public class HomeFragment extends Fragment{
 
     private HomeViewModel homeViewModel;
     ArrayList<HashMap<String, String>> arrayList;
@@ -41,8 +49,19 @@ public class HomeFragment extends Fragment {
     public static String caption1;
 
 
+    public static void ClickedEvent(Context mContext, String categoryid, String detail) {
+
+        CategoryFragment categoryfragment = new CategoryFragment();
+
+    }
+
+
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+
 
 
         homeViewModel =
@@ -52,6 +71,11 @@ public class HomeFragment extends Fragment {
 
 
         super.onCreate(savedInstanceState);
+
+
+
+
+
         mRecyclerview = root.findViewById(R.id.recycler);
         mLayoutManager = new LinearLayoutManager(root.getContext());
         mRecyclerview.setLayoutManager(mLayoutManager);
