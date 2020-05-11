@@ -23,9 +23,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.prac.Api;
-import com.example.prac.HomeActivity;
-import com.example.prac.OffersAdapter;
-import com.example.prac.Offers_Pojo;
+import com.example.prac.Category_Pojo.Cat;
+import com.example.prac.Offer_Pojo.Offer;
+import com.example.prac.Offer_Pojo.Offers_Pojo;
 import com.example.prac.R;
 
 import org.json.JSONArray;
@@ -34,9 +34,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class OffersFragment extends Fragment {
 
@@ -66,60 +69,55 @@ public class OffersFragment extends Fragment {
         mRecyclerview.setLayoutManager(gridLayoutManager);
 
 
-        RequestQueue queue = Volley.newRequestQueue(root.getContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Api.BASE_URL + "offers.php",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        Log.d("=====", "=========response:" + response);
-                        try {
-                            JSONObject objResponse = new JSONObject(response);
-                            JSONArray arrayHeadlines = objResponse.getJSONArray("Offers");
-                            arrayList = new ArrayList<>();
-
-                            for (int i = 0; i < arrayHeadlines.length(); i++) {
-                                JSONObject objItem = arrayHeadlines.getJSONObject(i);
-                                //String title = objItem.getString("title");
-                                String offerid = objItem.getString("offer_id");
-                                String url = objItem.getString("filepath");
-                                String discount = objItem.getString("discount");
-                                String code = objItem.getString("code");
-                                String vaild = objItem.getString("vaild");
-                                String shop = objItem.getString("shop");
 
 
-                                HashMap<String, String> map = new HashMap<>();
-                                // map.put("title", title);
-                                map.put("url", url);
-                                map.put("offer_id" , offerid);
-                                map.put("discount",discount);
-                                map.put("code",code);
-                                map.put("vaild",vaild);
-                                map.put("shop",shop);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-
-                                arrayList.add(map);
-                            }
-
-                            //set adapter
-                            mAdapter = new OffersAdapter(getActivity(), arrayList);
-                            mRecyclerview.setAdapter(mAdapter);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
+        Api service = retrofit.create(Api.class);
+        Call<Offers_Pojo> call = service.getoffers();
+        call.enqueue(new Callback<Offers_Pojo>() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                //mTextView.setText("That didn't work!");
+            public void onResponse(Call<Offers_Pojo> call, retrofit2.Response<Offers_Pojo> response) {
+
+                List<Offer> offers = response.body().getOffers();
+
+                arrayList = new ArrayList<>();
+
+                for(int i=0 ; i<offers.size() ; i++){
+
+                    String offerid = offers.get(i).getOfferId();
+                    String url = offers.get(i).getFilepath();
+                    String discount = offers.get(i).getDiscount();
+                    String code = offers.get(i).getCode();
+                    String vaild = offers.get(i).getVaild();
+                    String shop = offers.get(i).getShop();
+
+
+                    HashMap<String, String> map = new HashMap<>();
+                    // map.put("title", title);
+                    map.put("url", url);
+                    map.put("offer_id" , offerid);
+                    map.put("discount",discount);
+                    map.put("code",code);
+                    map.put("vaild",vaild);
+                    map.put("shop",shop);
+
+                    arrayList.add(map);
+
+                }
+                mAdapter = new OffersAdapter(getActivity(), arrayList);
+                mRecyclerview.setAdapter(mAdapter);
+
+            }
+
+            @Override
+            public void onFailure(Call<Offers_Pojo> call, Throwable t) {
+
             }
         });
-        queue.add(stringRequest);
-
-
-
 
        return root;
     }
@@ -128,9 +126,6 @@ public class OffersFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
    offersViewModel = ViewModelProviders.of(this).get(OffersViewModel.class);
-        // TODO: Use the ViewModel
-
-
 
     }
 

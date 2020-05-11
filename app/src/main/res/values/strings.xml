@@ -10,5 +10,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="shop_by_category">Shop by Category</string>
+    <string name="best_online_sari_market">Best Online Sari Market</string>
+    <string name="sariwala">Sariwala</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="slide_viewer">slide viewer</string>
+    <string name="back_button">back button</string>
+    <string name="this_is_the_title">This is the title</string>
 
 </resources>

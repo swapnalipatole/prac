@@ -1,10 +1,10 @@
-package com.example.prac;
+package com.example.prac.Offer_Pojo;
 
 import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Offers_Pojo implements Serializable
+public class Offer implements Serializable
 {
 
     @SerializedName("offer_id")

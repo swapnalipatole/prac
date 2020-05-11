@@ -1,45 +1,35 @@
 package com.example.prac.ui.home;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.NavController;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.prac.Api;
+import com.example.prac.Category_Pojo.Cat;
+import com.example.prac.Category_Pojo.Category_Pojo;
 import com.example.prac.R;
 import com.example.prac.ui.category.CategoryFragment;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class HomeFragment extends Fragment{
+public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     ArrayList<HashMap<String, String>> arrayList;
@@ -49,9 +39,14 @@ public class HomeFragment extends Fragment{
     public static String caption1;
 
 
+
+
     public static void ClickedEvent(Context mContext, String categoryid, String detail) {
 
         CategoryFragment categoryfragment = new CategoryFragment();
+
+
+
 
     }
 
@@ -75,7 +70,6 @@ public class HomeFragment extends Fragment{
 
 
 
-
         mRecyclerview = root.findViewById(R.id.recycler);
         mLayoutManager = new LinearLayoutManager(root.getContext());
         mRecyclerview.setLayoutManager(mLayoutManager);
@@ -85,99 +79,50 @@ public class HomeFragment extends Fragment{
         mRecyclerview.setLayoutManager(gridLayoutManager);
 
 
-        //callAPI();
-        RequestQueue queue = Volley.newRequestQueue(root.getContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Api.BASE_URL + "cats.php",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        Log.d("=====", "=========response:" + response);
-                        try {
-                            JSONObject objResponse = new JSONObject(response);
-                            JSONArray arrayHeadlines = objResponse.getJSONArray("cats");
-                            arrayList = new ArrayList<>();
 
-                            for (int i = 0; i < arrayHeadlines.length(); i++) {
-                                JSONObject objItem = arrayHeadlines.getJSONObject(i);
-                                //String title = objItem.getString("title");
-                                String categoryid = objItem.getString("category_id");
-                                String imgUrl = objItem.getString("location");
-                                String description = objItem.getString("caption");
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
 
-                                HashMap<String, String> map = new HashMap<>();
-                                // map.put("title", title);
-                                map.put("url", imgUrl);
-                                map.put("detail", description);
-                                map.put("categoryid", categoryid);
-
-
-                                arrayList.add(map);
-                            }
-
-                            //set adapter
-                            mAdapter = new HomeCategoryAdapter(getActivity(), arrayList);
-                            mRecyclerview.setAdapter(mAdapter);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
+        Api service = retrofit.create(Api.class);
+        Call<Category_Pojo> call = service.getcategory();
+        call.enqueue(new Callback<Category_Pojo>() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                //mTextView.setText("That didn't work!");
+            public void onResponse(Call<Category_Pojo> call, retrofit2.Response<Category_Pojo> response) {
+                List<Cat> category = response.body().getCats();
+
+                arrayList = new ArrayList<>();
+
+                for(int i=0 ; i<category.size() ; i++){
+
+                    String imgUrl = category.get(i).getLocation();
+                    String categoryid = category.get(i).getCategoryId();
+                    String description = category.get(i).getCaption();
+
+                    HashMap<String, String> map = new HashMap<>();
+                    // map.put("title", title);
+                    map.put("url", imgUrl);
+                    map.put("detail", description);
+                    map.put("categoryid", categoryid);
+
+                    arrayList.add(map);
+
+                }
+
+                mAdapter = new HomeCategoryAdapter(getActivity(), arrayList);
+                mRecyclerview.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<Category_Pojo> call, Throwable t) {
+
             }
         });
-        queue.add(stringRequest);
-
-
 
 
         return root;
     }
-
-
-    private void callAPI() {//
-
-
-        }
-
-        private void parseAPIResponse(String response) {
-
-            try {
-                JSONObject jo = new JSONObject(response);
-                JSONArray ja = jo.getJSONArray("cats");
-                arrayList = new ArrayList<>();
-
-                for (int i = 0; i < ja.length(); i++) {
-                    JSONObject objItem = ja.getJSONObject(i);
-                    //String title = objItem.getString("title");
-                    String categoryid = objItem.getString("category_id");
-                    String location = objItem.getString("location");
-                    String caption = objItem.getString("caption");
-
-
-                    HashMap<String, String> map = new HashMap<>();
-                    // map.put("title", title);
-                    map.put("categoryid",categoryid);
-                    map.put("url", location);
-                    map.put("detail", caption);
-
-
-                    arrayList.add(map);
-                }
-
-                //set adapter
-                mAdapter = new HomeCategoryAdapter(getActivity(), arrayList);
-                mRecyclerview.setAdapter(mAdapter);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-
 
 }

@@ -1,6 +1,8 @@
 package com.example.prac.ui.home;
 
 import android.app.Activity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.service.autofill.OnClickAction;
@@ -10,15 +12,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Response;
 import com.example.prac.HomeActivity;
+import com.example.prac.Preference;
 import com.example.prac.R;
 
 import com.example.prac.ui.category.CategoryFragment;
@@ -34,9 +38,11 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
     Context mContext;
     ArrayList<HashMap<String, String>> mArray;
 
+
     public HomeCategoryAdapter(Context cxt, ArrayList<HashMap<String, String>> mArray){
         this.mContext = cxt;
         this.mArray = mArray;
+
     }
 
 
@@ -69,13 +75,20 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
         holder.txtcaption.setText(map.get("detail"));
         HomeFragment.caption1=map.get("detail");
 
+        if (map.get("categoryid").equals("1")){
+            if (Preference.jump == 0) {
+                Preference.categoryid = map.get("categoryid");
+                Preference.categoryname = map.get("detail");
+            }
+        }
 
         holder.imgBanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Preference.categoryid = map.get("categoryid");
+                Preference.categoryname = map.get("detail");
+                Preference.jump = 1;
 
-
-                HomeFragment.ClickedEvent(mContext,map.get("categoryid") , map.get("detail"));
             }
         });
 

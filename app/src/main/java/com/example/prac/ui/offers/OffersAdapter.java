@@ -1,23 +1,24 @@
-package com.example.prac;
+package com.example.prac.ui.offers;
 
 import android.content.Context;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.prac.Preference;
 import com.example.prac.R;
-import com.example.prac.ui.home.HomeFragment;
-import com.example.prac.ui.offers.OffersFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class OffersAdapter extends RecyclerView.Adapter<com.example.prac.OffersAdapter.ViewHolder> {
+public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.ViewHolder> {
 
     Context mContext;
     ArrayList<HashMap<String, String>> mArray;
@@ -30,6 +31,7 @@ public class OffersAdapter extends RecyclerView.Adapter<com.example.prac.OffersA
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
         TextView title,shoptitle,code,validity;
+        Layout offer;
 
         public ViewHolder(View v) {
             super(v);
@@ -45,8 +47,8 @@ public class OffersAdapter extends RecyclerView.Adapter<com.example.prac.OffersA
         }
     }
     @Override
-    public void onBindViewHolder(OffersAdapter.ViewHolder holder, int position) {
-        HashMap<String,String> map = mArray.get(position);
+    public void onBindViewHolder(final OffersAdapter.ViewHolder holder, int position) {
+        final HashMap<String,String> map = mArray.get(position);
 
         Glide.with(mContext).load(map.get("url")).into(holder.img);
 
@@ -57,6 +59,17 @@ public class OffersAdapter extends RecyclerView.Adapter<com.example.prac.OffersA
         holder.validity.setText(map.get("vaild"));
 
 
+        holder.code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Preference.offer_code = map.get("code");
+                Toast toast = Toast.makeText(mContext,
+                        "Code Copied",
+                        Toast.LENGTH_SHORT);
+
+                toast.show();
+            }
+        });
     }
 
     @Override

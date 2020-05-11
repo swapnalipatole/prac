@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:gravity="center_horizontal"
-                android:text="This is the title"
+                android:text="@string/this_is_the_title"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="13sp" />

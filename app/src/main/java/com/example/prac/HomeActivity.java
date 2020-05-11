@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.ImageView;
 
 import com.example.prac.ui.category.CategoryFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -18,9 +19,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.widget.Toolbar;
 
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class HomeActivity extends AppCompatActivity {
-
-
 
     private AppBarConfiguration mAppBarConfiguration;
     NavController navController;
@@ -29,10 +31,10 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String jump = getIntent().getStringExtra("categoryid");
-        String  caption = getIntent().getStringExtra("caption");
+        String caption = getIntent().getStringExtra("caption");
         if (jump != null){
             Intent intent = new Intent(HomeActivity.this, CategoryFragment.class);
-            intent .putExtra("categoryid",jump);
+            intent.putExtra("categoryid",jump);
             intent.putExtra("caption",caption);
 
             //startActivity(intent);
@@ -46,23 +48,9 @@ public class HomeActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
 
-
-
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-
         BottomNavigationView navView = findViewById(R.id.nav_view1);
-
-
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-
-
-
         NavigationUI.setupWithNavController(navView, navController);
-
-
-
-
     }
 
     @Override
@@ -75,7 +63,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-    @Override
+   /* @Override
     public boolean onSupportNavigateUp() {
         //NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
@@ -84,6 +72,6 @@ public class HomeActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 ||(super.onSupportNavigateUp());
 
-    }
+    }*/
 }
 

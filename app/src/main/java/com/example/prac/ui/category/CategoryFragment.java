@@ -10,9 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.prac.Preference;
 import com.example.prac.R;
 
 public class CategoryFragment extends Fragment {
@@ -29,7 +32,9 @@ public class CategoryFragment extends Fragment {
         textView = root.findViewById(R.id.product_category);
 
         //String name = getActivity().getIntent().getStringExtra("caption");
-        //textView.setText(name);
+        textView.setText(new StringBuilder().append(Preference.categoryname).append(" Saree Category").toString());
+
+
 
         return root;
     }
