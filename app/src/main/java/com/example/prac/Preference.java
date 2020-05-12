@@ -6,4 +6,7 @@ public class Preference {
     public static Integer jump =0;
 
     public static String offer_code="";
+    public static int productcount =0;
+
+    public static Integer productquantity = 1;
 }

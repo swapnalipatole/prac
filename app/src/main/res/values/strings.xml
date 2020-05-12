@@ -17,5 +17,9 @@
     <string name="slide_viewer">slide viewer</string>
     <string name="back_button">back button</string>
     <string name="this_is_the_title">This is the title</string>
+    <string name="mrp">MRP :</string>
+    <string name="_0_items">0 Items</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="add_to_wishlist">Add to Wishlist</string>
 
 </resources>
