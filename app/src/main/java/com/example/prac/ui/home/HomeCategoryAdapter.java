@@ -21,6 +21,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Response;
+import com.bumptech.glide.Glide;
 import com.example.prac.HomeActivity;
 import com.example.prac.Preference;
 import com.example.prac.R;
@@ -69,8 +70,7 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
         final HashMap<String,String> map = mArray.get(position);
 
 
-      // Glide.with(mContext).load(map.get("url")).into(holder.imgBanner);
-        Picasso.get().load(map.get("url")).into(holder.imgBanner);
+        Glide.with(mContext).load(map.get("url")).into(holder.imgBanner);
 
         holder.txtcaption.setText(map.get("detail"));
         HomeFragment.caption1=map.get("detail");
@@ -87,7 +87,7 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
             public void onClick(View v) {
                 Preference.categoryid = map.get("categoryid");
                 Preference.categoryname = map.get("detail");
-                Preference.jump = 1;
+
 
             }
         });

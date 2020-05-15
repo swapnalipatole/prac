@@ -1,7 +1,10 @@
 package com.example.prac.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.service.autofill.OnClickAction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.prac.Api;
 import com.example.prac.Category_Pojo.Cat;
 import com.example.prac.Category_Pojo.Category_Pojo;
+import com.example.prac.HomeActivity;
 import com.example.prac.R;
 import com.example.prac.ui.category.CategoryFragment;
 
@@ -41,14 +45,6 @@ public class HomeFragment extends Fragment {
 
 
 
-    public static void ClickedEvent(Context mContext, String categoryid, String detail) {
-
-        CategoryFragment categoryfragment = new CategoryFragment();
-
-
-
-
-    }
 
 
 
@@ -113,13 +109,17 @@ public class HomeFragment extends Fragment {
 
                 mAdapter = new HomeCategoryAdapter(getActivity(), arrayList);
                 mRecyclerview.setAdapter(mAdapter);
+
+
             }
+
 
             @Override
             public void onFailure(Call<Category_Pojo> call, Throwable t) {
 
             }
         });
+
 
 
         return root;

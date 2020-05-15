@@ -74,7 +74,7 @@ public class CategoryFragment extends Fragment {
                 .build();
 
         Api service = retrofit.create(Api.class);
-        Call<Product_Pojo> call = service.getproducts(Preference.categoryid);
+        Call<Product_Pojo> call = service.getproducts(Integer.parseInt(Preference.categoryid));
         call.enqueue(new Callback<Product_Pojo>() {
             @Override
             public void onResponse(Call<Product_Pojo> call, Response<Product_Pojo> response) {
@@ -115,6 +115,7 @@ public class CategoryFragment extends Fragment {
                 Toast toast = Toast.makeText(getActivity(),
                         "Failed",
                         Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
 

@@ -9,4 +9,5 @@ public class Preference {
     public static int productcount =0;
 
     public static Integer productquantity = 1;
+
 }

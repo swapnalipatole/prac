@@ -2,6 +2,7 @@ package com.example.prac;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ImageView;
@@ -73,5 +74,7 @@ public class HomeActivity extends AppCompatActivity {
                 ||(super.onSupportNavigateUp());
 
     }*/
+
+
 }
 

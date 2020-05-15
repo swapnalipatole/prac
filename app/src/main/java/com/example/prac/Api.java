@@ -20,7 +20,7 @@ public interface Api {
         Call<Offers_Pojo> getoffers();
 
         @GET("product.php")
-        Call<Product_Pojo> getproducts(@Query("category_id") String category_id);
+        Call<Product_Pojo> getproducts(@Query("category_id") Integer category_id);
 
 
     }

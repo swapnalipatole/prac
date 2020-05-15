@@ -21,5 +21,10 @@
     <string name="_0_items">0 Items</string>
     <string name="add_to_cart">Add to Cart</string>
     <string name="add_to_wishlist">Add to Wishlist</string>
+    <string name="cart">Cart</string>
+    <string name="remove">Remove</string>
+    <string name="saree_cart_image">saree_cart_image</string>
+    <string name="_1">1</string>
+    <string name="remove_from_cart">remove_from_cart</string>
 
 </resources>
