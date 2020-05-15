@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.prac.Preference;
 import com.example.prac.R;
 
 
@@ -88,7 +89,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 holder.cart.setEnabled(false);
                 holder.cart.setBackgroundColor(Color.parseColor("#88B7B8AE"));
 
-
+                Preference.jump = 1;
 
                 Toast toast = Toast.makeText(mContext,
                         "Added to Cart Successfully",
@@ -112,6 +113,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         ViewHolder vh = new ViewHolder(mRowView);
 
         return vh;
+
     }
 
 

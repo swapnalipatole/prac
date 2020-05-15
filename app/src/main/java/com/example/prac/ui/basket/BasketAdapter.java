@@ -1,6 +1,7 @@
 package com.example.prac.ui.basket;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,33 +10,38 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.prac.R;
+import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.example.prac.ui.category.ProductAdapter.cartarrayList;
+
 public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder> {
 
     Context mContext;
-    ArrayList<HashMap<String, String>> mArray;
 
 
-    public BasketAdapter(Context cxt, ArrayList<HashMap<String, String>> mArray){
+
+    public BasketAdapter(Context cxt){
         this.mContext = cxt;
-        this.mArray = mArray;
+
 
     }
 
 
     public  static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView imgBanner;
-        TextView  discountedprice,sareename;
+        TextView  discountedprice,sareename,sareecartprice;
         public ViewHolder(View v){
             super(v);
             imgBanner = (ImageView) v.findViewById(R.id.sareecartimage);
-            discountedprice = (TextView) v.findViewById(R.id.sareecartprice);
+            discountedprice = (TextView) v.findViewById(R.id.sareediscountcartprice);
             sareename = (TextView) v.findViewById(R.id.sareecarttitle);
+            sareecartprice = (TextView) v.findViewById(R.id.sareecartprice);
 
 
         }
@@ -48,10 +54,14 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
     }
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final HashMap<String,String> map = mArray.get(position);
+        final HashMap<String,String> map = cartarrayList.get(position);
 
 
-
+        Glide.with(mContext).load(map.get("url")).into(holder.imgBanner);
+        holder.sareename.setText(map.get("sareename"));
+        holder.sareecartprice.setText(map.get("originalprice"));
+        holder.sareecartprice.setPaintFlags(holder.sareecartprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        holder.discountedprice.setText(map.get("discountedprice"));
 
 
 
@@ -62,7 +72,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
     @Override
     public int getItemCount()
     {
-        return mArray.size();
+        return cartarrayList.size();
     }
 
     @Override

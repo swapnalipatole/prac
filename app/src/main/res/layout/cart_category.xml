@@ -95,19 +95,15 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_remove_circle"
                     tools:ignore="VectorDrawableCompat"
-                    android:layout_marginTop="9dp"
                     android:contentDescription="@string/remove_from_cart"/>
 
                 <Button
                     android:id="@+id/remove"
-                    android:layout_width="80dp"
+                    android:layout_width="60dp"
                     android:layout_height="30dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="10dp"
                     android:background="@color/red"
-                    android:maxLines="2"
                     android:text="@string/remove"
-                    android:textColor="#fff"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
                     android:layout_marginEnd="10dp"/>
             </LinearLayout>

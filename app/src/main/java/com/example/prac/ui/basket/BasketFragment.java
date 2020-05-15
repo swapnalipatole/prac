@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.prac.Preference;
 import com.example.prac.R;
 import com.example.prac.ui.home.HomeCategoryAdapter;
 
@@ -40,8 +41,11 @@ public class BasketFragment extends Fragment {
         mRecyclerview.setLayoutManager(mLayoutManager);
 
 
-        mAdapter = new HomeCategoryAdapter(getActivity(), cartarrayList);
-        mRecyclerview.setAdapter(mAdapter);
+        if (Preference.jump == 1){
+            mAdapter = new BasketAdapter(getActivity());
+            mRecyclerview.setAdapter(mAdapter);
+        }
+
 
         return root;
     }
