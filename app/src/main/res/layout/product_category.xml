@@ -101,7 +101,7 @@
                     android:background="@color/red"
                     android:gravity="center_horizontal"
                     android:maxLines="2"
-                    android:paddingTop="10dp"
+                    android:padding="7dp"
                     android:text="@string/add_to_cart"
                     android:textAlignment="center"
                     android:textColor="#fff"

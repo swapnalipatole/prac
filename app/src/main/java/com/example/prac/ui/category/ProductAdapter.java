@@ -2,6 +2,7 @@ package com.example.prac.ui.category;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
@@ -18,21 +19,32 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.prac.Preference;
 import com.example.prac.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.example.prac.HomeActivity.cartarrayList;
+import static com.example.prac.HomeActivity.cartmap;
+import static com.example.prac.HomeActivity.totalamt;
+import static com.example.prac.HomeActivity.totaldisamt;
+
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
-    public static ArrayList<HashMap<String, String>> cartarrayList;
+
 
     Context mContext;
     ArrayList<HashMap<String, String>> mArray;
 
 
+
+
     public ProductAdapter(Context cxt, ArrayList<HashMap<String, String>> mArray){
         this.mContext = cxt;
         this.mArray = mArray;
+
 
     }
 
@@ -40,8 +52,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public  static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView sareeimage;
         TextView  sareetitle,sareeprice,sareediscount;
-        TextView productquantity;
         Button cart;
+
+
 
 
         public ViewHolder(View v){
@@ -71,31 +84,60 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.sareediscount.setText(map.get("discountedprice"));
         Glide.with(mContext).load(map.get("url")).into(holder.sareeimage);
 
+
         holder.cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cartarrayList = new ArrayList<>();
 
-                HashMap<String, String> cartmap = new HashMap<>();
-                cartmap.put("discountedprice",map.get("discountedprice"));
-                cartmap.put("originalprice",map.get("originalprice"));
-                cartmap.put("sareename",map.get("sareename"));
-                cartmap.put("url", map.get("url"));
+                if (cartarrayList.contains(map.get("productid"))){
+                    Toast t = Toast.makeText(mContext,"Already Added",Toast.LENGTH_SHORT);
+                    t.show();
+                }
 
-                cartarrayList.add(map);
+                    cartmap.put("productid", map.get("productid"));
+                    cartmap.put("discountedprice", map.get("discountedprice"));
+                    cartmap.put("originalprice", map.get("originalprice"));
+                    cartmap.put("sareename", map.get("sareename"));
+                    cartmap.put("url", map.get("url"));
+                    cartmap.put("quantity", map.get("quantity"));
+
+                    cartarrayList.add(map);
 
 
 
-                holder.cart.setEnabled(false);
-                holder.cart.setBackgroundColor(Color.parseColor("#88B7B8AE"));
+                    SharedPreferences sp = mContext.getSharedPreferences("carttotal", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor ed = sp.edit();
+                    ed.putString("disamt", map.get("discountedprice"));
+                    ed.putString("totamt", map.get("originalprice"));
+                    ed.apply();
+                    ed.putString("totalamt", String.valueOf(Integer.parseInt(totalamt) + Integer.parseInt(sp.getString("totamt", null))));
+                    ed.putString("totaldisamt", String.valueOf(Integer.parseInt(totaldisamt) + Integer.parseInt(sp.getString("disamt", null))));
+                    ed.apply();
+                    totalamt = sp.getString("totalamt", null);
+                    totaldisamt = sp.getString("totaldisamt", null);
 
-                Preference.jump = 1;
 
-                Toast toast = Toast.makeText(mContext,
-                        "Added to Cart Successfully",
-                        Toast.LENGTH_SHORT);
-                toast.show();
+                    SharedPreferences sharedPreferences = mContext.getSharedPreferences("cart", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(cartarrayList);
+                    editor.putString("cart_value", json);
+                    editor.apply();
+
+
+                    holder.cart.setEnabled(false);
+                    holder.cart.setBackgroundColor(Color.parseColor("#88B7B8AE"));
+
+                    Preference.jump = 1;
+
+                    Toast toast1 = Toast.makeText(mContext,
+                            "Added to Cart Sucessfully",
+                            Toast.LENGTH_SHORT);
+                    toast1.show();
+
+
             }
+
         });
 
 

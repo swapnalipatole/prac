@@ -98,7 +98,7 @@
                     android:contentDescription="@string/remove_from_cart"/>
 
                 <Button
-                    android:id="@+id/remove"
+                    android:id="@+id/removec"
                     android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:background="@color/red"

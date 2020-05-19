@@ -1,6 +1,8 @@
 package com.example.prac.ui.category;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,7 @@ import com.example.prac.Product_Pojo.Product;
 import com.example.prac.Product_Pojo.Product_Pojo;
 import com.example.prac.R;
 import com.example.prac.ui.home.HomeCategoryAdapter;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +39,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
 public class CategoryFragment extends Fragment {
 
     ArrayList<HashMap<String, String>> arrayList;
@@ -45,6 +49,7 @@ public class CategoryFragment extends Fragment {
 
     private CategoryViewModel categoryViewModel;
     TextView textView,productcount;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -93,12 +98,13 @@ public class CategoryFragment extends Fragment {
 
                     HashMap<String, String> map = new HashMap<>();
 
-                   // map.put("productid", productid);
-                   // map.put("categoryid", categoryid);
+                    map.put("productid", productid);
+                    map.put("categoryid", categoryid);
                     map.put("discountedprice",discountedprice);
                     map.put("originalprice",originalprice);
                     map.put("sareename",sareename);
                     map.put("url", imgUrl);
+                    map.put("quantity","1");
 
                     arrayList.add(map);
 
@@ -108,6 +114,8 @@ public class CategoryFragment extends Fragment {
 
                 mAdapter = new ProductAdapter(getActivity(), arrayList);
                 mRecyclerview.setAdapter(mAdapter);
+                savecart();
+
             }
 
             @Override
@@ -119,6 +127,18 @@ public class CategoryFragment extends Fragment {
             }
         });
 
+
         return root;
+    }
+
+    private void savecart() {
+
+    }
+
+    public Fragment MyFragment() {
+        Fragment fragment;
+        fragment = CategoryFragment.this;
+
+        return fragment;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.prac;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,13 +21,24 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.widget.Toolbar;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     NavController navController;
+
+    public static String totalamt ="0",totaldisamt ="0";
+    public static String ta,tda;
+
+
+    public static ArrayList<HashMap<String, String>> cartarrayList;
+    public static HashMap<String, String> cartmap = new HashMap<>();
+
+
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +53,16 @@ public class HomeActivity extends AppCompatActivity {
             //startActivity(intent);
         }
 
+
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
         ActionBar actionBar=getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.sort);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        cartarrayList = new ArrayList<>();
 
 
         BottomNavigationView navView = findViewById(R.id.nav_view1);

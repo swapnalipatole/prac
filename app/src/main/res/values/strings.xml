@@ -26,5 +26,7 @@
     <string name="saree_cart_image">saree_cart_image</string>
     <string name="_1">1</string>
     <string name="remove_from_cart">remove_from_cart</string>
+    <string name="total_rs">Total Rs :</string>
+    <string name="checkout">Checkout</string>
 
 </resources>
