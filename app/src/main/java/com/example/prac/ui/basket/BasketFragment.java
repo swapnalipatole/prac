@@ -66,20 +66,21 @@ public class BasketFragment extends Fragment {
         totalrs = (TextView) root.findViewById(R.id.totalrs);
         totaldisrs = (TextView) root.findViewById(R.id.totaldisrs);
 
+        loadcart();
 
+        if (cartlist != null){
 
-        if (cartarrayList != null){
-            loadcart();
 
 
             mAdapter = new BasketAdapter(getActivity(),getFragmentManager(),this);
             mRecyclerview.setAdapter(mAdapter);
+
             totalrs.setText(String.format("Total : Rs %s", tda));
             totaldisrs.setText(String.format("Saved Rs %s", Integer.parseInt(ta) - Integer.parseInt(tda) ));
 
 
-
         }
+
 
 
 

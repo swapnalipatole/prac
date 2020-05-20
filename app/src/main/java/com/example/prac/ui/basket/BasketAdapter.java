@@ -32,6 +32,8 @@ import java.util.HashMap;
 import static com.example.prac.HomeActivity.cartarrayList;
 import static com.example.prac.HomeActivity.ta;
 import static com.example.prac.HomeActivity.tda;
+import static com.example.prac.HomeActivity.totalamt;
+import static com.example.prac.HomeActivity.totaldisamt;
 import static com.example.prac.ui.basket.BasketFragment.cartlist;
 
 
@@ -85,23 +87,28 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
 
         final HashMap<String,String> map = cartlist.get(position);
+        if (cartlist.contains(cartarrayList)){
+            cartlist.indexOf(map.get("productid"));
+            Toast.makeText(mContext,"Alreasy Exists",Toast.LENGTH_SHORT).show();
+        }else {
 
-
-        Glide.with(mContext).load(map.get("url")).into(holder.imgBanner);
-        holder.sareename.setText(map.get("sareename"));
-        holder.sareecartprice.setText(map.get("originalprice"));
-        holder.sareecartprice.setPaintFlags(holder.sareecartprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        holder.discountedprice.setText(map.get("discountedprice"));
-        holder.quantity.setText(map.get("quantity"));
-
+            Glide.with(mContext).load(map.get("url")).into(holder.imgBanner);
+            holder.sareename.setText(map.get("sareename"));
+            holder.sareecartprice.setText(map.get("originalprice"));
+            holder.sareecartprice.setPaintFlags(holder.sareecartprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.discountedprice.setText(map.get("discountedprice"));
+            holder.quantity.setText(map.get("quantity"));
+        }
 
         holder.remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cartlist.remove(position);
+                applycart();
                 ta = String.valueOf(Integer.parseInt(ta) - (Integer.parseInt(map.get("originalprice")) * Integer.parseInt(map.get("quantity"))));
                 tda = String.valueOf(Integer.parseInt(tda) - (Integer.parseInt(map.get("discountedprice")) * Integer.parseInt(map.get("quantity"))));
-                applycart();
+                totalamt = ta;
+                totaldisamt = tda;
                 applycarttotal();
 
 

@@ -31,12 +31,11 @@ public class HomeActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     NavController navController;
 
-    public static String totalamt ="0",totaldisamt ="0";
+    public static String totalamt,totaldisamt;
     public static String ta,tda;
 
 
     public static ArrayList<HashMap<String, String>> cartarrayList;
-    public static HashMap<String, String> cartmap = new HashMap<>();
 
 
     @SuppressLint("ResourceType")
@@ -62,7 +61,6 @@ public class HomeActivity extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.sort);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        cartarrayList = new ArrayList<>();
 
 
         BottomNavigationView navView = findViewById(R.id.nav_view1);

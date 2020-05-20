@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.example.prac.HomeActivity.cartarrayList;
-import static com.example.prac.HomeActivity.cartmap;
 import static com.example.prac.HomeActivity.totalamt;
 import static com.example.prac.HomeActivity.totaldisamt;
 
@@ -89,10 +88,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             @Override
             public void onClick(View v) {
 
-                if (cartarrayList.contains(map.get("productid"))){
-                    Toast t = Toast.makeText(mContext,"Already Added",Toast.LENGTH_SHORT);
-                    t.show();
-                }
+
+                    SharedPreferences s = mContext.getSharedPreferences("cart", Context.MODE_PRIVATE);
+                    Gson g = new Gson();
+                    String j = s.getString("cart_value",null);
+                    Type t = new TypeToken<ArrayList<HashMap<String,String>>>(){}.getType();
+                    cartarrayList = g.fromJson(j,t);
+
+                    if (cartarrayList==null) {
+                        cartarrayList = new ArrayList<>();
+                    }
+                    HashMap<String, String> cartmap = new HashMap<>();
 
                     cartmap.put("productid", map.get("productid"));
                     cartmap.put("discountedprice", map.get("discountedprice"));
@@ -101,7 +107,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                     cartmap.put("url", map.get("url"));
                     cartmap.put("quantity", map.get("quantity"));
 
-                    cartarrayList.add(map);
+                    cartarrayList.add(cartmap);
 
 
 
@@ -110,11 +116,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                     ed.putString("disamt", map.get("discountedprice"));
                     ed.putString("totamt", map.get("originalprice"));
                     ed.apply();
+                    totalamt = sp.getString("totalamt", null);
+                    totaldisamt = sp.getString("totaldisamt", null);
+                    if (totalamt==null && totaldisamt==null){
+                        totaldisamt="0";
+                        totalamt="0";
+                    }
                     ed.putString("totalamt", String.valueOf(Integer.parseInt(totalamt) + Integer.parseInt(sp.getString("totamt", null))));
                     ed.putString("totaldisamt", String.valueOf(Integer.parseInt(totaldisamt) + Integer.parseInt(sp.getString("disamt", null))));
                     ed.apply();
-                    totalamt = sp.getString("totalamt", null);
-                    totaldisamt = sp.getString("totaldisamt", null);
 
 
                     SharedPreferences sharedPreferences = mContext.getSharedPreferences("cart", Context.MODE_PRIVATE);
